@@ -1,0 +1,13 @@
+@use "../../helpers/color";
+
+$burger-size: 3rem;
+$burger-padding: 0.8rem;
+$burger-border-color: color.get(secondary, 500);
+$burger-bar-height: 0.115rem;
+$burger-space-between-bars: 0.4rem;
+$burger-icon-bar-animation-with: 50%;
+
+$header-shadow: 0 5px 10px rgba(0, 0, 0, 15%);
+$header-shadow-mobile: 0 2px 2px rgba(0, 0, 0, 10%);
+$mobile-breakpoint: lg;
+$transition-duration: 300ms;

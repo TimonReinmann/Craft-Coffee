@@ -1,0 +1,32 @@
+$black: black;
+$white: white;
+$transparent: rgba(255, 255, 255, 0%);
+
+$font-color-light: $black;
+$font-color-dark: $white;
+
+$base-colors: (
+  default: rgb(60, 60, 84),
+  primary: rgb(255, 93, 122),
+  secondary: rgb(100, 0, 252),
+  active: rgb(255, 0, 200),
+  error: rgb(232, 24, 24),
+  info: rgb(12, 76, 239),
+  success: rgb(29, 233, 182),
+  link: rgb(235, 255, 111),
+  focus: rgb(255, 0, 200),
+);
+
+$color-overlay-map: (
+  50: (o: 0.95, oc: $white),
+  100: (o: 0.9, oc: $white),
+  200: (o: 0.75, oc: $white),
+  300: (o: 0.5, oc: $white),
+  400: (o: 0.25, oc: $white),
+  500: (o: 0, oc: $black),
+  600: (o: 0.25, oc: $black),
+  700: (o: 0.5, oc: $black),
+  800: (o: 0.75, oc: $black),
+  900: (o: 0.9, oc: $black),
+  950: (o: 0.95, oc: $black),
+);

@@ -1,0 +1,47 @@
+{% if entry is defined %}
+    {% include "_entry-types/" ~ entry.section.handle|kebab ~ "/" ~ entry.type.handle|kebab ~ ".twig" %}
+{% elseif section is defined and slug is defined %}
+    {% set fullUri =  craft.app.request.fullUri() ?? '' %}
+    {% set shortUri = fullUri|split('/')|slice(-2, 2)|join('/') %}
+    {% set entry = craft.entries({ uri : shortUri }).one() %}
+
+    {% if isDynamicRoute is defined %}
+        {% if entry|length %}
+
+            {% do seomatic.helper.loadMetadataForUri(entry.uri) %}
+
+            {#
+            Define the handling of the alternate language tags, more here:
+            https://yooapps.jira.com/wiki/spaces/INTRA/pages/4334649540/SEOmatic
+            #}
+            {% set alternateUrlHandling = 'auto' %}
+
+            {% switch alternateUrlHandling %}
+            {% case 'auto' %}
+                {% do seomatic.helper.getLocalizedUrls(entry.uri) %}
+
+            {% case 'manual primary site' %}
+                {{ addPrimarySitesByHandle(['']) }}
+                {% do seomatic.helper.getLocalizedUrls(entry.uri) %}
+
+            {% case 'manual' %}
+                {% set urls = getHrefLangUrls(entry) %}
+                {% if urls|length > 0 %}
+                    {% set alt = seomatic.link.get('alternate') %}
+                    {% do alt.href(urls[0]).hreflang(urls[1]) %}
+                {% endif %}
+            {% endswitch %}
+        {% endif %}
+
+        {% set canonicalLink = getSeomaticCanonicalLink(entry) %}
+        {% if canonicalLink %}
+            {% do seomatic.link.get("canonical").href(canonicalLink) %}
+        {% endif %}
+    {% endif %}
+
+    {% if entry|length %}
+        {% include "_entry-types/" ~ entry.section.handle|kebab ~ "/" ~ entry.type.handle|kebab ~ ".twig" with { entry: entry } %}
+    {% else %}
+        {% redirect 'not-found' %}
+    {% endif %}
+{% endif %}

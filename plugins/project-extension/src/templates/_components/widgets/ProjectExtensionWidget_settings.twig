@@ -1,0 +1,25 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Project Extension plugin for Craft CMS
+ *
+ * ProjectExtensionWidget Widget Settings
+ *
+ * @author    Yanick Recher
+ * @copyright Copyright (c) 2021 Yanick Recher
+ * @link      https://yoo.digital
+ * @package   ProjectExtension
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("yoo\\projectextension\\assetbundles\\projectextension\\ProjectExtensionAsset") %}
+
+{{ forms.textField({
+    label: 'Message',
+    instructions: 'Enter a message here.',
+    id: 'message',
+    name: 'message',
+    value: widget['message']}) }}

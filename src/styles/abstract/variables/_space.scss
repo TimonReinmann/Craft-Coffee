@@ -1,0 +1,14 @@
+// Spaces are defined on this place.
+// You can use them in your scss files with the function space.set().
+// You can decouple the space definition here from the base-font-size,
+// or you can bind it to the base-font-size by using the font.$base-size variable.
+// Make sure you define the space Variables $base-space and $base-space-px in
+// a way it makes sense for your project. (it should end in the same result)
+
+// Information: Why is here also a px value defined? ->
+// In some cases you have to use a representation as Pixel value, as example
+// when you use the space value in a calculation with other Values or if you try to use
+// spaces for PDF print generation.
+
+$base-space: 1rem;
+$base-space-px: 10px;

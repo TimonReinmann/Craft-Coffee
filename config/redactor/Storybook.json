@@ -1,0 +1,30 @@
+{
+  "buttons": [
+    "html",
+    "formatting",
+    "link",
+    "unorderedlist",
+    "orderedlist",
+    "bold"
+  ],
+  "formatting": [
+    "h3",
+    "h4",
+    "p",
+    "bold",
+    "blockquote",
+    "pre"
+  ],
+  "formattingAdd": {
+    "subheadline": {
+      "title": "Subheadline",
+      "api": "module.inline.format",
+      "args": {
+        "tag": "span",
+        "class": "subheadline"
+      }
+    }
+  },
+  "linkNewTab": true,
+  "toolbarFixed": true
+}

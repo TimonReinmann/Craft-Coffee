@@ -1,0 +1,73 @@
+{
+  "fieldGroups": [
+    "Common"
+  ],
+  "sections": [
+    {
+      "name": "Home",
+      "handle": "home",
+      "type": "single",
+      "enableVersioning": true,
+      "siteSettings": [
+        {
+          "hasUrls": true,
+          "uriFormat": "__home__",
+          "template": "_sections\/section",
+          "enabledByDefault": true
+        }
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "group": "Common",
+      "name": "Rich text",
+      "handle": "richText",
+      "instructions": "",
+      "type": "craft\\redactor\\Field",
+      "uiMode": "enlarged",
+      "redactorConfig": "",
+      "purifierConfig": "",
+      "cleanupHtml": true,
+      "removeInlineStyles": "1",
+      "removeEmptyTags": "1",
+      "removeNbsp": "1",
+      "purifyHtml": "1",
+      "columnType": "text",
+      "availableVolumes": "*",
+      "availableTransforms": "*",
+      "showUnpermittedVolumes": false,
+      "showUnpermittedFiles": false,
+      "showHtmlButtonForNonAdmins": "",
+      "configSelectionMode": "choose",
+      "manualConfig": "",
+      "defaultTransform": ""
+    }
+  ],
+  "entryTypes": [
+    {
+      "sectionHandle": "home",
+      "name": "Home",
+      "handle": "home",
+      "hasTitleField": false,
+      "titleFormat": "{section.name|raw}",
+      "fieldLayout": {
+        "Inhalt": [
+          "__ui_1",
+          "richText"
+        ]
+      },
+      "fieldConfigs": {
+        "Inhalt": {
+          "__ui_1": {
+            "type": "craft\\fieldlayoutelements\\EntryTitleField",
+            "width": 100
+          },
+          "richText": {
+            "width": 100
+          }
+        }
+      }
+    }
+  ]
+}

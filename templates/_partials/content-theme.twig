@@ -1,0 +1,28 @@
+{% macro contentTheme() %}
+    {% if entry is defined %}
+        {% set currentLang = currentSite.language[0:2]|default('de') %}
+        {% set themeHandle = currentSite.handle|split('_')[0]|default('default') ~ '-' ~ currentLang %}
+        {{ loadCssComponent(themeHandle, 'theme') }}
+
+        {% set selectedTheme = null %}
+        {% if 'navSetting' in entry|keys and entry['navSetting']  != null and entry.navSetting.one()|length %}
+            {% if entry.navSetting.one().contentTheme == 'inherit' %}
+                {% set currentEntry = entry.parent %}
+
+                {% set ancestorEntries = craft.entries()
+                    .ancestorOf(entry)
+                    .all()|reverse %}
+
+                {% for ancestor in ancestorEntries %}
+                    {% if selectedTheme == null and ancestor.navSetting != null and ancestor.navSetting.one().contentTheme != 'inherit' %}
+                        {% set selectedTheme = ancestor.navSetting.one().contentTheme %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {% set selectedTheme = entry.navSetting.one().contentTheme %}
+            {% endif %}
+        {% endif %}
+        {% set selectedTheme = selectedTheme == null ? themeHandle : selectedTheme %}
+        {{ loadCssComponent(selectedTheme, 'content-theme') }}
+    {% endif %}
+{% endmacro %}

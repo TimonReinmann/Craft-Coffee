@@ -1,0 +1,3 @@
+[submodule "plugins/craft-components"]
+	path = plugins/craft-components
+	url = git@bitbucket.org:yooapps/craft-components.git

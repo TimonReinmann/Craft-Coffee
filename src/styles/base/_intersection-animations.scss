@@ -1,0 +1,38 @@
+@use "../abstract/variables/transitions";
+
+.fly-in {
+  &--before {
+    transform: translateY(50px) !important; /* stylelint-disable-line */
+    transition: transform 850ms ease-in-out, opacity 950ms ease-in-out !important; /* stylelint-disable-line */
+    opacity: 0.1 !important; /* stylelint-disable-line */
+  }
+
+  &--after {
+    transform: translateX(0) !important; /* stylelint-disable-line */
+    opacity: 1 !important; /* stylelint-disable-line */
+  }
+}
+
+.zoom-in {
+  &--before {
+    transform: scale(0.9) !important; /* stylelint-disable-line */
+    transition: transform 650ms ease-in-out, opacity 1150ms ease-in-out !important; /* stylelint-disable-line */
+    opacity: 0.1 !important; /* stylelint-disable-line */
+  }
+
+  &--after {
+    transform: scale(1) !important; /* stylelint-disable-line */
+    opacity: 1 !important; /* stylelint-disable-line */
+  }
+}
+
+.fade-in {
+  &--before {
+    transition: opacity 300ms ease-out !important; /* stylelint-disable-line */
+    opacity: 0.1 !important; /* stylelint-disable-line */
+  }
+
+  &--after {
+    opacity: 1 !important; /* stylelint-disable-line */
+  }
+}

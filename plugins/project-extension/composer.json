@@ -1,0 +1,47 @@
+{
+  "name": "yoo/project-extension",
+  "description": "The purpose of this plugin is to define missing functionality of your project",
+  "type": "craft-plugin",
+  "version": "1.0.1",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "project extension"
+  ],
+  "support": {
+    "docs": "https://bitbucket.org/yooapps/craft-folder-template/src/master//project-extension/blob/master/README.md",
+    "issues": "https://bitbucket.org/yooapps/craft-folder-template/src/master//project-extension/issues"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Yanick Recher",
+      "homepage": "https://yoo.digital"
+    }
+  ],
+  "require": {
+    "craftcms/cms": "^3.0|^4.0",
+    "php": "^8.0.2|^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "yoo\\projectextension\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "Project Extension",
+    "handle": "project-extension",
+    "developer": "Yanick Recher",
+    "developerUrl": "https://yoo.digital",
+    "documentationUrl": "https://bitbucket.org/yooapps/craft-folder-template/src/master//project-extension/blob/master/README.md",
+    "changelogUrl": "https://raw.githubusercontent.com/https://bitbucket.org/yooapps/craft-folder-template/src/master//project-extension/master/CHANGELOG.md",
+    "components": {
+      "projectExtensionService": "yoo\\projectextension\\services\\ProjectExtensionService"
+    },
+    "class": "yoo\\projectextension\\ProjectExtension"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

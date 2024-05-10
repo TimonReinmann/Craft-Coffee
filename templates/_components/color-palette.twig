@@ -1,0 +1,51 @@
+{{ loadCssComponent('color-palette') }}
+
+{% macro createColorTile(key, baseColor, baseMixColor, opacity, name) %}
+    {% set scssString = '
+$col: rgba(' ~ baseColor ~ ' , ' ~ opacity ~ ');
+$bgColor: mix(' ~ baseMixColor ~ ', rgb(red($col), green($col), blue($col)), alpha($col) * 100%);
+.color-palette__elem-' ~ name ~ '-' ~ key ~ ' { --color-value: "#{$bgColor}"; background-color: $bgColor; }
+.color-palette__elem-' ~ name ~ '-' ~ key ~ '::after { content: var(--color-value); }' %}
+    {% css %}
+        {{ compileScss(scssString)|raw }}
+    {% endcss %}
+    <div class="color-palette__elem color-palette__elem-{{ name }}-{{ key }}">
+        {{ key }}
+    </div>
+{% endmacro %}
+
+{% set palletSteps = [
+    {400: { o: 0.25, bc: '#fff'}},
+    {300: { o: 0.5, bc: '#fff'}},
+    {200: { o: 0.75, bc: '#fff'}},
+    {100: { o: 0.9, bc: '#fff'}},
+    {50: { o: 0.95, bc: '#fff'}},
+    {600: { o: 0.25, bc: '#000'}},
+    {700: { o: 0.5, bc: '#000'}},
+    {800: { o: 0.75, bc: '#000'}},
+    {900: { o: 0.9, bc: '#000'}},
+    {950: { o: 0.95, bc: '#000'}}
+] %}
+<div class="color-palette">
+    {% for colorElement in colors %}
+        {% if colorElement.color|length > 1 %}
+            <div class="color-palette__type-wrapper">
+                <h2>{{ colorElement.colorName }} <span class="color-palette__clipboard">📋</span></h2>
+                {{ _self.createColorTile(500, colorElement.color, '#000', 0, colorElement.colorName) }}
+                <div class="color-palette__type">
+                    {% for step in palletSteps %}
+                        {% set key = step|keys|first %}
+                        {% set opacity = step[key].o %}
+                        {% set baseMixColor = step[key].bc %}
+
+                        {{ _self.createColorTile(key, colorElement.color, baseMixColor, opacity, colorElement.colorName) }}
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <div class="color-palette__type-wrapper">
+                <code> -- Define a Color! -- </code>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

@@ -1,0 +1,50 @@
+//  --------------------------------------------------------
+//  generic
+//     Here you can define styles which are HTML element based and NOT related to components.
+//     Every definition which can be set in a Component should be defined as such.
+//     Create a new file for every purpose.
+//  --------------------------------------------------------
+@use "base/box-sizing";
+@use "base/body";
+@use "base/font";
+@use "base/headline";
+@use "base/normalize";
+@use "base/icons";
+@use "base/typography";
+@use "base/keyframes";
+@use "base/list";
+@use "base/link";
+@use "base/button";
+@use "base/scroll-lock";
+@use "base/intersection-animations";
+
+//  -----------------------------------------------------------------------------------------
+//  partials
+//      Partial files are used on mostly every page as example the Navigation and footer
+//
+//      IMPORTANT: (file import order)
+//        You can not overwrite css from the main files, which comes from the
+//        craft-components.
+//        As Example if you try to overwrite css definitions from the craft-components,
+//        you have to do this in the src/styles/components/navbar.scss file.
+//  -----------------------------------------------------------------------------------------
+// @use "partials/navbar";
+@use "partials/footer";
+
+//  -----------------------------------------------------------------------------------------
+//  layout
+//      Basic layout files which can not be considered components
+//  -----------------------------------------------------------------------------------------
+@use "layout/page-content-grid";
+
+//  -----------------------------------------------------------------------------------------
+//  components
+//      Components no longer imported here.
+//      You create a twig component and a scss, file which
+//      has the same name like the twig component.
+//      Your new created scss file need to have no loDash prefix
+//      component.scss not this _component.scss.
+
+//      In the twig component you import the Component
+//      with the follow twig {{ loadCssComponent('component-a') }}
+//  ----------------------------------------------------------------------------------------

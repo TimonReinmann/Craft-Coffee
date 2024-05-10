@@ -1,0 +1,25 @@
+{% extends '_layouts/base.twig' %}
+
+{% block isoBadge %}{% endblock %}
+{% block jumpToTop %}{% endblock %}
+
+{% block content %}
+    {% set mediaDimensions = [
+        { 'width' : 420, 'height': 'auto', 'ratio': 1, hightDpi: 2 },
+        { 'width' : 620, 'height': 'auto', 'ratio': 2 },
+        { 'width' : 993, 'height': 'auto', 'ratio': 2.5 },
+        { 'width' : 1920, 'ratio': 2.5 },
+    ] %}
+    <style>
+      .background-image {
+        grid-column: 1 / -1;
+      }
+    </style>
+    <div class="background-image {% include '@craft-components/background-image.twig' with {
+        content: entry.backgroundImage.one(),
+        dimensions: mediaDimensions,
+    } %}"></div>
+    {% include '_components/grid-example.twig' %}
+    {% include '_components/grid-example.twig' %}
+{% endblock %}
+

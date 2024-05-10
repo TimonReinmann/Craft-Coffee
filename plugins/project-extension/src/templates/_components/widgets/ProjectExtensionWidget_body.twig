@@ -1,0 +1,20 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Project Extension plugin for Craft CMS
+ *
+ * ProjectExtensionWidget Widget Body
+ *
+ * @author    Yanick Recher
+ * @copyright Copyright (c) 2021 Yanick Recher
+ * @link      https://yoo.digital
+ * @package   ProjectExtension
+ * @since     1.0.0
+ */
+#}
+
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@yoo/projectextension/assetbundles/projectextensionwidgetwidget/dist', true) ~ '/img/ProjectExtensionWidget-icon.svg' %}
+
+<img src="{{ iconUrl }}" height="64" width="64" />
+
+<p>{{ message }}</p>

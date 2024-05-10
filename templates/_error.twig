@@ -1,0 +1,13 @@
+{% set customPageTitle = statusCode %}
+{% extends '_layouts/base.twig' %}
+
+{% block isoBadge %}{% endblock %}
+{% block jumpToTop %}{% endblock %}
+
+{% block content %}
+    <div class="error-page">
+        {% set messages = errorMessages.errorMessages.one() %}
+        {% set msgKey = 'error' ~ statusCode in messages|keys ? 'error' ~ statusCode : 'default' %}
+        {% include '_components/richtext.twig' with { content: messages[msgKey] } %}
+    </div>
+{% endblock %}

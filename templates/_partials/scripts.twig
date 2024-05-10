@@ -1,0 +1,5 @@
+{% if craft.app.config.general.devMode %}
+    <script src="{{ '/assets/scripts/main.js'| serverPush }}" type="text/javascript"></script>
+{% else %}
+    <script src="{{ '/assets/scripts/main.min.js'| serverPush }}?v={{ getenv('APP_VERSION') }}" type="text/javascript"></script>
+{% endif %}

@@ -1,0 +1,24 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Project Extension plugin for Craft CMS
+ *
+ * ProjectExtensionUtility Utility Content
+ *
+ * @author    Yanick Recher
+ * @copyright Copyright (c) 2021 Yanick Recher
+ * @link      https://yoo.digital
+ * @package   ProjectExtension
+ * @since     1.0.0
+ */
+#}
+
+<h1>ProjectExtensionUtility</h1>
+
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@yoo/projectextension/assetbundles/projectextensionutilityutility/dist', true) ~ '/img/ProjectExtensionUtility-icon.svg' %}
+
+<img src="{{ iconUrl }}" height="64" width="64" />
+
+<p>Your Utility content goes here</p>
+
+<p>{{ someVar }}</p>

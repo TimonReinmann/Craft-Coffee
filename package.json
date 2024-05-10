@@ -1,0 +1,90 @@
+{
+  "name": "Project",
+  "version": "0.1.0",
+  "description": "Project Description",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/yooapps/project.git"
+  },
+  "author": "Yanick Recher @ YOO AG",
+  "contributors": [
+    {
+      "name": "Daniel Kohler",
+      "email": "daniel.kohler@yoo.digital"
+    },
+    {
+      "name": "Yanick Recher",
+      "email": "yanick.recher@yoo.digital"
+    },
+    {
+      "name": "Mario Nano",
+      "email": "mario.nano@yoo.digital"
+    },
+    {
+      "name": "Yann Kost",
+      "email": "yann.kost@yoo.digital"
+    },
+    {
+      "name": "Elia Reutlinger",
+      "email": "elia.reutlinger@yoo.digital"
+    }
+  ],
+  "scripts": {
+    "start": "gulp",
+    "dev-build": "gulp dev-build",
+    "prod-build": "gulp prod-build",
+    "lint": "stylelint \"src/styles/**/*.scss\"",
+    "lint-fix": "stylelint \"src/styles/**/*.scss\" --fix"
+  },
+  "pre-commit": [
+    "prod-build"
+  ],
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/yooapps/project",
+  "private": true,
+  "devDependencies": {
+    "@ronilaukkarinen/gulp-stylelint": "~14.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@yoo-digital/eslint-config-base": "^1.2.2",
+    "@yoo-digital/stylelint-config-sass": "2.0.1",
+    "autoprefixer": "~10.4.14",
+    "browser-sync": "~2.29.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "exports-loader": "~4.0.0",
+    "gulp": "~4.0.2",
+    "gulp-cached": "~1.1.1",
+    "gulp-clean": "~0.4.0",
+    "gulp-cssnano": "~2.1.3",
+    "gulp-dependents": "~1.2.5",
+    "gulp-exec": "~5.0.0",
+    "gulp-find": "~0.0.10",
+    "gulp-grep": "~0.2.0",
+    "gulp-if": "~3.0.0",
+    "gulp-intercept": "~0.1.0",
+    "gulp-postcss": "~9.0.1",
+    "gulp-print": "^5.0.2",
+    "gulp-rename": "~2.0.0",
+    "gulp-sass": "~5.1.0",
+    "gulp-shell": "~0.8.0",
+    "gulp-sourcemaps": "~3.0.0",
+    "gulp-uglify": "~3.0.2",
+    "postcss": "~8.4.26",
+    "pre-commit": "^1.2.2",
+    "sass": "~1.63.6",
+    "stylelint": "~14.16.0",
+    "stylelint-scss": "~5.0.1",
+    "stylelint-webpack-plugin": "~4.1.1",
+    "ts-loader": "~9.4.4",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript": "~5.1.6",
+    "webpack": "~5.88.2",
+    "webpack-cli": "~5.1.4",
+    "webpack-stream": "~7.0.0"
+  },
+  "dependencies": {
+    "swiper": "~10.0.4"
+  }
+}

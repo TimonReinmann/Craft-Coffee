@@ -1,0 +1,67 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - dev
+      - stage
+      - master
+pr: none
+jobs:
+  - job: Build_Files
+    pool:
+      vmImage: "ubuntu-20.04"
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '16.13.0'
+      - task: Npm@1
+        displayName: 'npm install'
+        inputs:
+          command: 'install'
+      - task: InstallSSHKey@0
+        inputs:
+          knownHostsEntry: 'bitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQeJzhupRu0u0cdegZIa8e86EG2qOCsIsD1Xw0xSeiPDlCr7kq97NLmMbpKTX6Esc30NuoqEEHCuc7yWtwp8dI76EEEB1VqY9QJq6vk+aySyboD5QF61I/1WeTwu+deCbgKMGbUijeXhtfbxSxm6JwGrXrhBdofTsbKRUsrN1WoNgUa8uqN1Vx6WAJw1JHPhglEGGHea6QICwJOAr/6mrui/oB7pkaWKHj3z7d1IC4KWLtY47elvjbaTlkN04Kc/5LFEirorGYVbt15kAUlqGM65pk6ZBxtaO3+30LVlORZkxOh+LKL/BvbZ/iRNhItLqNyieoQj/uh/7Iv4uyH/cV/0b4WDSd3DptigWq84lJubb9t/DnZlrJazxyDCulTmKdOR7vs9gMTo+uoIrPSb8ScTtvw65+odKAlBj59dhnVp9zd7QUojOpXlL62Aw56U4oO+FALuevvMjiWeavKhJqlR7i5n9srYcrNV7ttmDw7kf/97P5zauIhxcjX+xHv4M='
+          sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDeS2Jz6lz+LF45Jrha8fdgii70VqFryBTz3QguTRPBP8UihT2nh0HsTC7dDf6g7H7L21nwKJEcg4PmFbIdh1xVTNL9CzHwSAxHUiKyfPmRUCOPZWUO8I9j68/4jqy5M23UbmD31AV2FE8+OdkY1FwX1r5lHgox4TaN8js4Lih8RgfN9baZ4PSLCT5omrlZ5oNZsknvfXHJlcgigAaCIQZ0HY361Hl1hkcS00DRSTikar4YDMJcleYym3xw+aei2bSCLiTPl31RcC0D/IRggU76Mql7Zs1Rrew7Agor4BeiZop8GgfTaq8NUHuu7PGtNQHEvDKFaGxjDYlfJWHKCdDORr67f0X5FwPm5pP4xipd1bjB9GGBwL/zod4+WGxMvXnCDwarjKbp4YMi+lZBoBeqFtmZnqBe5ag/osIb4JwceUuy6jGx5umDkN8ns5y+2HszA5Xs89dxfZIV0Z6AtNg+xG/ZLYENFrk6Z72Hh/QtShAm30lGa8QjJ7x0YPyslrs= root@localhost'
+          sshKeySecureFile: 'id_rsa'
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          script: |
+            php composer.phar install --no-dev
+          noRc: false
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          script: |
+            php composer.phar audit
+      - script: |
+          npm run dev-build
+        condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'dev'))
+        displayName: 'Build for dev'
+      - script: |
+          npm run prod-build
+        condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'stage'))
+        displayName: 'Build for stage'
+      - script: |
+          npm run prod-build
+        condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
+        displayName: 'Build for prod'
+      - script: |
+          echo $(Build.BuildNumber) > .buildnumber
+      - task: DeleteFiles@1
+        inputs:
+          Contents: '**/node_modules/**/*'
+      - task: ArchiveFiles@2
+        displayName: 'zip source folder'
+        inputs:
+          rootFolderOrFile: '$(Build.SourcesDirectory)'
+          includeRootFolder: false
+          archiveType: 'zip'
+          archiveFile: '$(Build.StagingDirectory)/$(Build.BuildId).zip'
+          replaceExistingArchive: true
+      - task: PublishBuildArtifacts@1
+        displayName: 'publish files'
+        inputs:
+          PathtoPublish: '$(Build.StagingDirectory)/$(Build.BuildId).zip'
+          ArtifactName: 'yourprojectname'
+          publishLocation: 'Container'

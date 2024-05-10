@@ -1,0 +1,25 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Project Extension plugin for Craft CMS
+ *
+ * ProjectExtensionField Field Settings
+ *
+ * @author    Yanick Recher
+ * @copyright Copyright (c) 2021 Yanick Recher
+ * @link      https://yoo.digital
+ * @package   ProjectExtension
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("yoo\\projectextension\\assetbundles\\projectextension\\ProjectExtensionAsset") %}
+
+{{ forms.textField({
+    label: 'Some Attribute',
+    instructions: 'Enter some attribute here.',
+    id: 'someAttribute',
+    name: 'someAttribute',
+    value: field['someAttribute']}) }}

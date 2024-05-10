@@ -1,0 +1,3 @@
+@use "../abstract/mixins/craft-components/font";
+
+@include font.define-typography;

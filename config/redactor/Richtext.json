@@ -1,0 +1,66 @@
+{
+  "buttons": [
+    "html",
+    "formatting",
+    "link",
+    "unorderedlist",
+    "orderedlist",
+    "bold"
+  ],
+  "formatting": [
+    "h3",
+    "h4",
+    "p",
+    "bold",
+    "blockquote"
+  ],
+  "formattingAdd": {
+    "subheadline": {
+      "title": "Subheadline",
+      "api": "module.inline.format",
+      "args": {
+        "tag": "span",
+        "class": "subheadline"
+      }
+    }
+  },
+  "plugins": [
+    "linkclass"
+  ],
+  "linkClasses": [
+    {
+      "label": "Button (Regular)",
+      "class": "button-primary"
+    },
+    {
+      "label": "Button (Outline)",
+      "class": "button-secondary"
+    },
+    {
+      "label": "Anker-Button (Regular)",
+      "class": "button-primary anchor"
+    },
+    {
+      "label": "Anker-Button (Outline)",
+      "class": "button-secondary anchor"
+    },
+    {
+      "label": "Telefon-Button (Regular)",
+      "class": "button-primary phone"
+    },
+    {
+      "label": "Telefon-Button (Outline)",
+      "class": "button-secondary phone"
+    },
+    {
+      "label": "Email-Button (Regular)",
+      "class": "button-primary email"
+    },
+    {
+      "label": "Email-Button (Outline)",
+      "class": "button-secondary email"
+    }
+  ],
+  "linkNewTab": true,
+  "toolbarFixed": true
+}

@@ -1,0 +1,7 @@
+@use "../helpers/mixins";
+
+.page-content-grid {
+  @include mixins.content-grid-wrapper;
+
+  grid-row: content-start / content-end;
+}

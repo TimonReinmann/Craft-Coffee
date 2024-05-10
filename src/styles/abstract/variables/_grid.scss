@@ -1,0 +1,26 @@
+@use "../../helpers/space";
+
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+  "xxl": 1440px
+) !default;
+
+$padding: (
+  "default": space.set(1),
+  "sm": space.set(1),
+  "md": space.set(3),
+  "lg": space.set(3),
+  "xl": space.set(8),
+  "xxl": space.set(8)
+) !default;
+
+$boxed: (
+  "sm": auto,
+  "md": auto,
+  "lg": boxed,
+  "xl": boxed,
+  "xxl": boxed
+) !default;

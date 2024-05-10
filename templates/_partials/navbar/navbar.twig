@@ -1,0 +1,17 @@
+{% embed '@craft-components/navbar/navbar.twig' %}
+    {% block navbarMobileHeaderContent %}
+        <a href="{{ siteUrl('') }}">Logo</a>
+        {{ parent() }}
+    {% endblock %}
+    {% block navbarMobileContentBefore %}
+        <div style=" height: 100px; background-color: green;"><h4>Beispiel inhalt mobile</h4></div>
+    {% endblock %}
+    {% block navbarMobileContentAfter %}
+        <div style=" height: 100px; background-color: yellow;"><h4>Beispiel inhalt mobile</h4></div>
+    {% endblock %}
+    {% block desktopContent %}
+        <div style="background-color:lightgrey; width: 100%;">
+            <h4>This is Dummy content for DESKTOP.</h4>
+        </div>
+    {% endblock %}
+{% endembed %}

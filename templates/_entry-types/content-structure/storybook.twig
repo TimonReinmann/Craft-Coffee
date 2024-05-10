@@ -1,0 +1,87 @@
+{% extends '_layouts/base.twig' %}
+
+{% block isoBadge %}{% endblock %}
+{% block jumpToTop %}{% endblock %}
+
+{% block content %}
+    {{ loadCssComponent('storybook') }}
+    {% set componentImplementations = entry.componentImplementation.all() %}
+    {% for imp in componentImplementations %}
+        <ul class="storybook">
+            {% set compDesc = imp.componentDescription.one() %}
+            {% set compContent = imp[imp.type ~ ''] is defined ? imp[imp.type ~ ''] : '' %}
+            {% set componentVariables = {} %}
+            {% set componentVariablesSet = {} %}
+            {% for compVar in compDesc.variables %}
+                {% if imp[imp.type ~ ''] is defined %}
+                    {% set compData = {(imp.type ~ '') : (imp[imp.type ~ ''])} %}
+                {% else %}
+                    {% set compData = null %}
+                {% endif %}
+
+                {% set componentVariables = componentVariables|merge({
+                    (compVar.name) : {value: (compVar.type == 'boolean' ? (compVar.value == 'true' ? true : false) : compVar.value), default: compVar.default, type: compVar.type}
+                }) %}
+
+                {% set componentVariablesSet = componentVariablesSet|merge({
+                    'neoLoaderData': compData,
+                    (compVar.name): (compVar.type == 'object' ? compVar.value : (compVar.type == 'boolean' ? (compVar.value == 'true' ? true : false) : (imp[imp.type ~ ''] is defined ? imp[imp.type ~ ''] : compVar.value)))
+                }) %}
+            {% endfor %}
+            <li class="storybook__title">
+                <h2>{{ compDesc.implementationTitle }}</h2>
+            </li>
+            {% if componentVariables|length > 0 %}
+                <li class="storybook__variables">
+                    <h4>Variables:</h4>
+                    <table class="storybook__variables-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Value</th>
+                            <th>Default</th>
+                        </tr>
+                        {% for name, v in componentVariables %}
+                            <tr>
+                                <td>{{ name }}</td>
+                                <td>{{ v.type }}</td>
+                                <td>{{ storybookTableContentType(v.type, v.value) }}</td>
+                                <td>{{ v.default }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </li>
+            {% endif %}
+            <li class="storybook__description">
+                <h4>Description:</h4>
+                <div class="storybook__description-content">{{ compDesc.description }}</div>
+            </li>
+            {% if imp.type != 'generalInfos' %}
+            <li class="storybook__example">
+                <h4>Example:</h4>
+                <div class="storybook__code">
+                <button class="storybook__clipboard-button" data-selector=".copy-code-{{ compDesc.id }}">&#128203;</button>
+<pre class="copy-code-{{ compDesc.id }}">{{ "{% include 'craft-components/" ~ imp.type|kebab ~ ".twig' with {"}}
+{% for name, value in componentVariablesSet %}
+{% if componentVariables[name] is defined %}
+{% set type = componentVariables[name].type %}
+{{ name }}: {{ storybookTableContentType(type, value|default('')) }}{{ loop.last == false ? ',' }}
+{% endif %}
+{% endfor %}
+{{ "} %}" }}</pre>
+                </div>
+            </li>
+                {% if imp.type == 'staticComponent' and imp.componentInclude or imp.type != 'staticComponent' %}
+                    <li class="storybook__preview">
+                        <h4>Preview:</h4>
+                        <div class="storybook__component {{ compDesc.defineGridForContent ? 'storybook__component--with-grid' : '' }}">
+                            {% include 'craft-components/' ~ (imp.type == 'staticComponent' ? imp.componentInclude : imp.type|kebab) ~ '.twig' with componentVariablesSet %}
+                        </div>
+                    </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    {% endfor %}
+{% endblock %}
+
+

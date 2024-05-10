@@ -1,0 +1,19 @@
+@use "../abstract/variables/color";
+
+body.scroll-lock { /* stylelint-disable-line */
+  overflow: hidden;
+}
+
+body.has-scrollbar.scroll-lock { /* stylelint-disable-line */
+  padding-right: var(--scrollbar-width);
+
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: var(--scrollbar-width);
+    height: 100%;
+    background-color: lightgray;
+  }
+}

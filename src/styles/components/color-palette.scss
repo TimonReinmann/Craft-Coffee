@@ -1,0 +1,147 @@
+@use "../helpers/mixins";
+@use "../helpers/color";
+
+.color-palette {
+  $root: &;
+
+  @include mixins.content-grid-full-block;
+  @include mixins.content-grid-wrapper;
+  @include mixins.font-define(default, 1);
+
+  &__type {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+  }
+
+  &__type-wrapper {
+    @include mixins.content-grid-content-block;
+
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    margin: 4rem 0 5rem;
+  }
+
+  &__clipboard {
+    padding-left: 0.5rem;
+    transition: opacity 200ms ease-in-out;
+  }
+
+  h2 {
+    position: absolute;
+    top: -4rem;
+    cursor: pointer;
+
+    &:hover {
+      #{$root}__clipboard {
+        opacity: 0.5;
+      }
+    }
+
+    &:active {
+      #{$root}__clipboard {
+        opacity: 1;
+      }
+    }
+  }
+
+  [class^="color-palette__elem"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0.5rem;
+    transition: transform 200ms ease-in-out;
+    color: white;
+    font-family: Courier, sans-serif;
+    font-size: 1rem;
+    text-shadow: 0 0 5px black;
+    cursor: pointer;
+
+    &::before {
+      content: "📋";
+      margin-right: 1rem;
+      padding: 0.15rem;
+      transition: opacity 200ms ease-in-out;
+      border-radius: 1rem;
+      opacity: 0.5;
+      font-size: 0.9rem;
+    }
+
+    &::after {
+      margin-left: 1rem;
+      font-size: 0.8rem;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+
+      &::before {
+        opacity: 0.5;
+      }
+    }
+
+    &:active {
+      &::before {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+    }
+  }
+
+  @include mixins.media-include-media(">sm") {
+    [class^="color-palette__elem"] {
+      flex-direction: column;
+      width: calc(100% / 5);
+
+      &::before {
+        margin-right: 0;
+      }
+
+      &::after {
+        margin-left: 0;
+      }
+    }
+
+    &__type {
+      flex-direction: row;
+      width: auto;
+    }
+
+    &__type-wrapper {
+      flex-direction: row;
+    }
+  }
+
+  @include mixins.media-include-media(">md") {
+    &__clipboard {
+      opacity: 0.2;
+    }
+
+    [class^="color-palette__elem"]::before {
+      opacity: 0.5;
+    }
+  }
+
+  @include mixins.media-include-media(">xl") {
+    &__type-wrapper {
+      grid-column: content-start / 8;
+
+      &:nth-child(2n) {
+        grid-column: 8 / content-end;
+        margin-right: 0;
+        margin-left: 0.5rem;
+      }
+    }
+
+    &__elem {
+      min-width: 8rem;
+    }
+
+    &__type &__elem {
+      min-width: auto;
+    }
+  }
+}

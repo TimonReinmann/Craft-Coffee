@@ -1,0 +1,92 @@
+{% set currentLang = currentSite.language[0:2]|default('de') %}
+{% set pageTitle = seomatic.meta.parsedValue('seoTitle') %}
+
+<!doctype html>
+<html lang="{{ currentLang }}">
+<head>
+    {% block head %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge; IE=EmulateIE10; IE=EmulateIE11">
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        {#
+        Configure additional tags not handled by SEOmatic (as described in the docs):
+        https://yooapps.jira.com/wiki/spaces/INTRA/pages/1893794007/Technical+SEO#Zusätzlich-zu-SEOmatic
+        #}
+
+        <meta property="og:country-name" content="CH">
+
+        {% set organizationJsonLd = seomatic.jsonLd.create({
+            'type': 'Organization',
+            'url': siteUrl(''),
+            'logo': siteUrl('/assets/images/logo-' ~ currentSite.handle|split('_')[0] ~ '.svg'),
+        }) %}
+
+        <meta name="application-name" content="{{ pageTitle }}">
+        <meta name="apple-mobile-web-app-title" content="{{ pageTitle }}">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name='apple-touch-fullscreen' content='yes'>
+
+        {#            {% include '_partials/favicon.twig' %} #}
+
+        {% if craft.app.config.general.devMode %}
+            <link rel="stylesheet" href="{{ '/assets/styles/app/main.css'|serverPush }}" type="text/css">
+        {% else %}
+            <link rel="stylesheet" href="{{ '/assets/styles/app/main.min.css'|serverPush }}?v={{ getenv('APP_VERSION') }}" type="text/css">
+        {% endif %}
+        {#
+        to preload fonts, define every font you use in your css here the include. (if you are not sure have a look at styles/abstract/variables/font.scss)
+        #}
+        {# <link rel="preload" href="{{ 'assets/fonts/Radomir Tinkov - Gilroy-Regular.woff2'|serverPush }}" as="font" type="font/woff2" crossorigin> #}
+    {% endblock %}
+
+    {% block datalayerPush %}{% endblock %}
+</head>
+<body>
+
+    {{ requirePageAccess() }}
+
+    {% block navigation %}
+        {% include "_partials/navbar/navbar.twig" with {
+            overwriteCss: true
+        } %}
+    {% endblock %}
+
+    {% set pageContentGrid = pageContentGrid|default('page-content-grid') %}
+    {% set entryTypePrefix = entry.section.name|kebab ~ '-' ~ entry.type|kebab ~ '-' %}
+    {% set areaLayoutName = pageContentGridArea|default(entryTypePrefix ~ pageContentGrid) ~ '-layout' %}
+    {{ loadCssComponent(areaLayoutName, 'layout') }}
+    <main
+        role="main"
+        class="{{ pageContentGrid }} {{ areaLayoutName|default('') }}"
+    >
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block footer %}
+        {% include "_partials/footer.twig" %}
+    {% endblock %}
+
+    {% block jumpToTop %}
+        {% include "_partials/jump-to-top.twig" %}
+    {% endblock %}
+
+    {% block privacyBanner %}
+        {% include "_partials/privacy-banner.twig" %}
+    {% endblock %}
+
+    {% block scripts %}
+        {% include "_partials/scripts.twig" %}
+    {% endblock %}
+
+    {% block gtm %}
+        {% if craft.app.plugins.pluginInstalled('seomatic') %}
+            {% do seomatic.script.get('googleTagManager').include(true) %}
+        {% endif %}
+    {% endblock %}
+</body>
+</html>

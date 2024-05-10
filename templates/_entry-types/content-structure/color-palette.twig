@@ -1,0 +1,9 @@
+{% extends '_layouts/base.twig' %}
+
+{% block isoBadge %}{% endblock %}
+{% block jumpToTop %}{% endblock %}
+
+{% block content %}
+    {% include '_components/color-palette.twig' with {colors: entry.colorPallete } %}
+{% endblock %}
+

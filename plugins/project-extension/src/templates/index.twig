@@ -1,0 +1,46 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Project Extension plugin for Craft CMS 3.x
+ *
+ * Project Extension index.twig
+ *
+ * @author    Yanick Recher
+ * @copyright Copyright (c) 2021 Yanick Recher
+ * @link      https://yoo.digital
+ * @package   ProjectExtension
+ * @since     1.0.0
+ */
+#}
+
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("yoo\\projectextension\\assetbundles\\projectextension\\ProjectExtensionAsset") %}
+{% do view.registerAssetBundle("yoo\\projectextension\\assetbundles\\indexcpsection\\IndexCPSectionAsset") %}
+
+{# Link for the ? icon at the bottom of the page #}
+{% set docsUrl = "https://github.com/https://bitbucket.org/yooapps/craft-folder-template/src/master//project-extension/blob/master/README.md" %}
+
+{# The title of this CP section #}
+{% set title = "Project Extension" %}
+
+{# The URL to this plugin's base CP section #}
+{% set pluginCpUrl = url('project-extension') %}
+
+{# Get a URL to an image in our AssetBundle #}
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@yoo/projectextension/assetbundles/indexcpsection/dist', true) ~ '/img/Index-icon.svg' %}
+
+{# Content that should appear in the page header #}
+{% set extraPageHeaderHtml %}
+    <div class="buttons">
+        <a href="{{ pluginCpUrl }}" class="btn submit add icon">{{ "Click Me!"|t('project-extension') }}</a>
+    </div>
+{% endset %}
+
+{# The content of the CP Section #}
+{% set content %}
+    <h2>{{ "Index CP Section body goes here"|t('project-extension') }}</h2>
+    <img src="{{ iconUrl }}" height="64" width="64" />
+    <p class="textline"></p>
+{% endset %}

@@ -1,0 +1,12 @@
+/.env
+/.idea
+/vendor
+.DS_Store
+/.siteconfig.yaml
+node_modules
+db
+/web/volumes
+/web/assets/scripts
+/web/assets/styles
+/.buildnumber
+/src/styles/abstract/mixins/craft-components/*

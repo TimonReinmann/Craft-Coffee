@@ -1,0 +1,36 @@
+@use "../abstract/mixins/craft-components/font";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin: 0;
+}
+
+h1,
+.h1 {
+  @include font.define(default, 3);
+}
+
+h2,
+.h2 {
+  @include font.define(default, 2.4);
+}
+
+h3,
+.h3 {
+  @include font.define(default, 1.8);
+}
+
+h4,
+.h4 {
+  @include font.define(default, 1.6);
+}

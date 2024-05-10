@@ -1,0 +1,48 @@
+@use "icon-definitions";
+
+// This key changes after new project  exports
+$icon-key: "ttw606";
+
+@font-face {
+  font-family: "icomoon"; /* stylelint-disable-line */
+  font-style: normal;
+  font-weight: normal; /* stylelint-disable-line */
+  src: url("/assets/fonts/icomoon/icomoon.eot?d7zwpq");
+  src: url("/assets/fonts/icomoon/icomoon.eot?#{$icon-key}#iefix") format("embedded-opentype"), url("/assets/fonts/icomoon/icomoon.woff2?#{$icon-key}") format("woff2"), url("/assets/fonts/icomoon/icomoon.ttf?#{$icon-key}") format("truetype"), url("/assets/fonts/icomoon/icomoon.woff?#{$icon-key}") format("woff"), url("/assets/fonts/icomoon/icomoon.svg?#{$icon-key}#icomoon") format("svg");
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important; /* stylelint-disable-line */
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal; /* stylelint-disable-line */
+  line-height: 1;
+  text-transform: none;
+  speak: never;
+
+  &[class*="-32"],
+  &[class*="-24"],
+  &[class*="-8"] {
+    &.icon-custom-font-size {
+      font-size: inherit;
+    }
+  }
+
+  &[class*="-32"] {
+    font-size: 3.2rem;
+  }
+
+  &[class*="-24"] {
+    font-size: 2.4rem;
+  }
+
+  &[class*="-8"] {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,65 @@
+dateModified: 1715331178
+email:
+  fromEmail: dev-test@yoo.digital
+  fromName: crafty-coffee-2024
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    4dd22900-e755-4222-9f49-1cabe0bae0ff: crafty-coffee-2024 # crafty-coffee-2024
+    ae11117b-4c94-41c0-aa3a-71b0dd17464f: Common # Common
+    fdc56224-decb-4a74-99c9-17733f904933: crafty-coffee-2024 # crafty-coffee-2024
+plugins:
+  architect:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
+  contact-form:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  contact-form-honeypot:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  cp-field-inspect:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  craft-components:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  neo:
+    edition: standard
+    enabled: true
+    licenseKey: WWKRHRYEAADFF2O0ISHGV0GQ
+    schemaVersion: 4.0.0
+  project-extension:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  seomatic:
+    edition: standard
+    enabled: true
+    licenseKey: 98LHWXA2TTQ5KAF25WKC8RK7
+    schemaVersion: 3.0.12
+  super-table:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.0
+system:
+  edition: pro
+  live: true
+  name: crafty-coffee-2024
+  schemaVersion: 4.5.3.0
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  requireEmailVerification: true

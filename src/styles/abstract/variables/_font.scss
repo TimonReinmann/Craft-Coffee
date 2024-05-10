@@ -1,0 +1,21 @@
+@use "sass:map";
+
+$config: (
+  font-path: "/assets/fonts",
+  family-fallback: sans-serif,
+  families: (
+    default: (family: "Helvetica", weight: 400, line-height: 1.5, is-system-font: true),
+    source-sans-bold: (family: "SourceSans3-Bold", weight: 700, line-height: 1.5),
+  ),
+  body-font-definition: default,
+  base-size: 16px,
+  desktop-first: false,
+  media-steps: ("sm", "md", "lg"),
+  font-size-steps: (
+    0: 0.025,
+    0.8: 0.025,
+    1.6: 0.05,
+    2.4: 0.1,
+    6.4: 0.15,
+  ),
+) !default;

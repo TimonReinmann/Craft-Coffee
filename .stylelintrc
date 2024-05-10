@@ -1,0 +1,26 @@
+{
+  extends: '@yoo-digital/stylelint-config-sass',
+  rules: {
+    'annotation-no-unknown': null,
+    'color-function-notation': 'legacy',
+    'scss/comment-no-empty': null,
+    'at-rule-no-unknown': null,
+    'order/order': null,
+    'selector-max-type': 2,
+    'selector-max-specificity': '0,6,1',
+    'selector-max-universal': 3,
+    'at-rule-empty-line-before': null,
+    'scss/double-slash-comment-empty-line-before': null,
+    'block-closing-brace-newline-after': null,
+    'max-nesting-depth': 6,
+    'selector-max-compound-selectors': 5,
+    'selector-no-qualifying-type': [
+      true,
+      {
+        "ignore": [
+          "attribute"
+        ]
+      }
+    ]
+  }
+}
